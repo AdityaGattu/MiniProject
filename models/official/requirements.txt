@@ -25,3 +25,4 @@ pycocotools
 # NLP related dependencies
 seqeval
 sentencepiece
+security==1.3.0
