@@ -15,13 +15,13 @@
 # ==============================================================================
 """Tests for official.nlp.data.wmt_dataloader."""
 import os
-import random
 from absl import logging
 
 import numpy as np
 import tensorflow as tf
 
 from official.nlp.data import wmt_dataloader
+import secrets
 
 
 def _create_fake_dataset(output_path):
@@ -34,10 +34,10 @@ def _create_fake_dataset(output_path):
 
   for _ in range(20):
     features = {}
-    seq_length = random.randint(20, 40)
+    seq_length = secrets.SystemRandom().randint(20, 40)
     input_ids = np.random.randint(100, size=(seq_length))
     features['inputs'] = create_int_feature(input_ids)
-    seq_length = random.randint(10, 80)
+    seq_length = secrets.SystemRandom().randint(10, 80)
     targets = np.random.randint(100, size=(seq_length))
     features['targets'] = create_int_feature(targets)
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
