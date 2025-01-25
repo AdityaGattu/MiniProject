@@ -300,7 +300,7 @@ class KittiRaw(object):
     pose_file = os.path.join(self.dataset_dir, date, drive, 'poses',
                              frame_id + '.txt')
     with open(pose_file, 'r') as f:
-      pose = f.readline()
+      pose = f.readline(5_000_000)
     pose = np.array(pose.split(' ')).astype(np.float32).reshape(3, 4)
     pose = np.vstack((pose, np.array([0, 0, 0, 1]).reshape((1, 4))))
     return pose
