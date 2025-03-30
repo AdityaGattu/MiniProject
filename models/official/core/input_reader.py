@@ -14,18 +14,17 @@
 # limitations under the License.
 # ==============================================================================
 """A common dataset reader."""
-
-import random
 from typing import Any, Callable, Optional
 
 import tensorflow as tf
 import tensorflow_datasets as tfds
 
 from official.modeling.hyperparams import config_definitions as cfg
+import secrets
 
 
 def _get_random_integer():
-  return random.randint(0, (1 << 31) - 1)
+  return secrets.SystemRandom().randint(0, (1 << 31) - 1)
 
 
 class InputReader:
