@@ -19,7 +19,6 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import random
 import tarfile
 
 # pylint: disable=g-bad-import-order
@@ -35,6 +34,8 @@ import tensorflow.compat.v1 as tf
 
 from official.nlp.transformer.utils import tokenizer
 from official.utils.flags import core as flags_core
+import secrets
+
 # pylint: enable=g-bad-import-order
 
 # Data sources for training/evaluating the transformer translation model.
@@ -343,7 +344,7 @@ def shuffle_records(fname):
     if len(records) % 100000 == 0:
       logging.info("\tRead: %d", len(records))
 
-  random.shuffle(records)
+  secrets.SystemRandom().shuffle(records)
 
   # Write shuffled records to original file name
   with tf.python_io.TFRecordWriter(fname) as w:
