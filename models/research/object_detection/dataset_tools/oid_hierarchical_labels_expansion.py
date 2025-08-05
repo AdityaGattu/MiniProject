@@ -207,7 +207,7 @@ def main(unused_args):
   labelname_column_index = -1
   with open(FLAGS.input_annotations, 'r') as source:
     with open(FLAGS.output_annotations, 'w') as target:
-      header = source.readline()
+      header = source.readline(5_000_000)
       target.writelines([header])
       column_names = header.strip().split(',')
       labelname_column_index = column_names.index('LabelName')
